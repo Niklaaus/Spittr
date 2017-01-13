@@ -1,5 +1,12 @@
 package com.web;
 
+import static org.mockito.Mockito.*;
+import static org.junit.matchers.JUnitMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,14 +14,13 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
-import static org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder.*;
-import static org.springframework.test.web.server.setup.MockMvcBuilders.standaloneSetup;
-import static org.mockito.Mockito.*;
 
 import com.Spittle;
 import com.data.SpittleRepository;
 
 public class SpittleControllerTest {
+
+	@SuppressWarnings("deprecation")
 	@Test
 	public void shouldShowRecentSpittles() throws Exception {
 		List<Spittle> expectedSpittles = createSpittleList(20);
@@ -22,7 +28,7 @@ public class SpittleControllerTest {
 		when(mockRepository.findSpittles(Long.MAX_VALUE, 20)).thenReturn(expectedSpittles);
 		SpittleController controller = new SpittleController(mockRepository);
 		MockMvc mockMvc = standaloneSetup(controller)
-				.setSingleView(new InternalResourceView("/WEB-INF/views/spittles.jsp")).build();
+				.setSingleView(new InternalResourceView("/jsp/spittles.jsp")).build();
 		mockMvc.perform(get("/spittles")).andExpect(view().name("spittles"))
 				.andExpect(model().attributeExists("spittleList"))
 				.andExpect(model().attribute("spittleList", hasItems(expectedSpittles.toArray())));
@@ -35,4 +41,5 @@ public class SpittleControllerTest {
 		}
 		return spittles;
 	}
+
 }
