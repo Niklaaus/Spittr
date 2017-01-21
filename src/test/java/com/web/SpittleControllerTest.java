@@ -20,7 +20,7 @@ import com.data.SpittleRepository;
 
 public class SpittleControllerTest {
 
-	@SuppressWarnings("deprecation")
+	/*@SuppressWarnings("deprecation")
 	@Test
 	public void shouldShowRecentSpittles() throws Exception {
 		List<Spittle> expectedSpittles = createSpittleList(20);
@@ -32,7 +32,7 @@ public class SpittleControllerTest {
 		mockMvc.perform(get("/spittles")).andExpect(view().name("spittles"))
 				.andExpect(model().attributeExists("spittleList"))
 				.andExpect(model().attribute("spittleList", hasItems(expectedSpittles.toArray())));
-	}
+	}*/
 
 	private List<Spittle> createSpittleList(int count) {
 		List<Spittle> spittles = new ArrayList<Spittle>();
@@ -41,7 +41,7 @@ public class SpittleControllerTest {
 		}
 		return spittles;
 	}
-/*
+
 	@SuppressWarnings("deprecation")
 	@Test
 	public void shouldShowPagedSpittles() throws Exception {
@@ -54,5 +54,5 @@ public class SpittleControllerTest {
 		mockMvc.perform(get("/spittles?max=238900&count=50")).andExpect(view().name("spittles"))
 				.andExpect(model().attributeExists("spittleList"))
 				.andExpect(model().attribute("spittleList", hasItems(expectedSpittles.toArray())));
-	}*/
+	}
 }
