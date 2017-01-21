@@ -19,4 +19,10 @@ public class StaticSpittleRepository implements SpittleRepository{
 		}
 		return spittleList;
 	}
+
+	@Override
+	public Spittle findOne(int spittleId) {
+		Spittle spittle = new Spittle(spittleId+"th time Very cold weather here 3:) ", new java.util.Date(), 26.8467, 80.9462);
+		return spittle;
+	}
 }
